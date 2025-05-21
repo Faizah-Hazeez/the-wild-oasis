@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Heading from "./Heading";
+import { useDarkMode } from "../context/DarkModeContext";
 
 const StyledLogo = styled.div`
   text-align: center;
@@ -11,10 +12,12 @@ const Img = styled.img`
 `;
 
 function Logo() {
+  const { isDarkMode } = useDarkMode();
+
+  const src = isDarkMode ? "/logo-dark.png" : "/logo-light.png";
   return (
     <StyledLogo>
-      <Img src="/cabin.png" alt="Logo" />
-      <Heading as="h2">The Cabin</Heading>
+      <Img src={src} alt="Logo" />
     </StyledLogo>
   );
 }

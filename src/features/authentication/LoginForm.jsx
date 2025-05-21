@@ -4,7 +4,6 @@ import Form from "../../ui/Form";
 import Input from "../../ui/Input";
 import SpinnerMini from "../../ui/SpinnerMini";
 import FormRowVertical from "../../ui/FormRowVertical";
-import { login } from "../../services/apiAuth";
 import { useLogin } from "./useLogin";
 
 function LoginForm() {
@@ -16,7 +15,15 @@ function LoginForm() {
     e.preventDefault();
     if (!email || !password) return;
 
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      }
+    );
   }
 
   return (
